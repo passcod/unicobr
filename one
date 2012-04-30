@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for (( i=1; i < 10; i++ ))
+do
+  LINE=`cat unicobr |head -n $i |tail -n1`
+
+  git co master
+  git commit --allow-empty -m "Slice of unicorn 0$i"
+  git co -b "0$i|$LINE"
+done
+
+for (( i=10; i < 66; i++ ))
+do
+  LINE=`cat unicobr |head -n $i |tail -n1`
+
+  git co master
+  git commit --allow-empty -m "Slice of unicorn $i"
+  git co -b "$i|$LINE"
+done
